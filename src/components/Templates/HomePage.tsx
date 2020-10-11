@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { Box, Heading, Flex, Card, Image, Text, Button } from "rebass"
 import Layout from "../layout"
-import { Header } from "../Organisms/Header/Header"
+import { Header } from "../../stories/organisms/header/Header"
 import { Section } from "react-landing-page"
 import { Link } from "gatsby"
 import { BlogPostRecommendations } from "../Organisms/BlogPostRecommendations"
 import { Grid } from "../Atoms/Grid/Grid"
+import { Hero } from "../../stories/organisms/Hero/hero"
 export const HomePage: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [blogPreview, setBlogPreview] = useState([])
@@ -23,6 +24,7 @@ export const HomePage: React.FC = () => {
   return (
     <>
       <Header />
+      <Hero title={"Welcome to my blog"} label="View articles" />
       <Section>
         <Heading>Lorem ipsum dolor sit amet</Heading>
         <Flex pt={35}>
@@ -42,11 +44,8 @@ export const HomePage: React.FC = () => {
           </Box>
         </Flex>
       </Section>
-      <Box pl={5} pr={5}>
-        <Grid templateColumnType="repeat(auto-fit, minmax(300px, 1fr))">
-          <BlogPostRecommendations />
-        </Grid>
-      </Box>
+
+      <BlogPostRecommendations />
     </>
   )
 }

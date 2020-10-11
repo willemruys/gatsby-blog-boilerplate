@@ -7,3 +7,7 @@ Initial setup includes Gatsby and its createPages API to generate dynamic routin
 ## How content is consumed
 
 gatsby-node.js fetches data using axios (target url is at the moment dummy data from https://jsonplaceholder.typicode.com/posts). The createPages API then creates the blog posts overview page and each blog post page.
+
+## viewing component library
+
+By running `yarn storybook` storybook will automatically open on port 6006.

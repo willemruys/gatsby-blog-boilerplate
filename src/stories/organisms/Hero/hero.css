@@ -11,21 +11,3 @@
   background-repeat: no-repeat;
   background-position: center;
 }
-
-.title-container {
-  margin-top: 10rem;
-}
-
-.hero-title {
-  max-width: 16em;
-  margin: 0;
-  font-size: 12vh;
-  font-weight: bold;
-  line-height: 0.9;
-}
-
-.button-container {
-  margin-left: -50%;
-  display: flex;
-  margin-bottom: 1em;
-}

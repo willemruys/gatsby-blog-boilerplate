@@ -11,6 +11,9 @@ import { Hero } from "../../stories/organisms/Hero/hero"
 import Layout from "../layout"
 import { Button } from "../../stories/atoms/button"
 import { textAlign } from "styled-system"
+import JumbotronComponent from "../Organisms/Jumbotron/Jumbotron"
+import { Container } from "react-bootstrap"
+
 export const HomePage: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [blogPreview, setBlogPreview] = useState([])
@@ -32,37 +35,23 @@ export const HomePage: React.FC = () => {
         labelPrimary="View articles"
         labelSecondary="About me"
       />
-      <Section>
-        <h2>About me</h2>
-        <Flex pt={35}>
-          <Box s p={3} sx={{ textAlign: "center" }} width={"80%"}>
-            {" "}
-            <p>
-              I am a full stack developer with experience in creating custom
-              applications for a variety of use cases. I have a master's degree
-              in Innovation, Strategy and Entrepreuneurship and currently
-              obtaining my degree in computer sciences.
-            </p>
-            <br />
-            <p>
-              I have an interest in solving business challenges using
-              technology.
-            </p>
-          </Box>
-        </Flex>
-        <Box p={3}>
-          <Button
-            label={"Read about my projects"}
-            primary={true}
-            size={"medium"}
-          />
-        </Box>
-      </Section>
+      <Container style={{ marginTop: 50 }} fluid="md">
+        <JumbotronComponent
+          label="my projects"
+          heading="About me"
+          text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius tenetur voluptate accusamus, inventore porro dolorem error aut ab tempora possimus! Laborum obcaecati nobis asperiores alias, nesciunt sapiente ratione a veniam?"
+        />
+      </Container>
       <Section>
         <Box>
           <h2>My latest posts</h2>
         </Box>
         <BlogPostRecommendations />
+      </Section>
+      <Section>
+        <Box>
+          <h2>My most recent projects</h2>
+        </Box>
       </Section>
     </Layout>
   )

@@ -3,7 +3,8 @@ import { Heading, Box, Text, Image, Button, Flex, Card } from "rebass"
 import { Link } from "gatsby"
 
 import axios from "axios"
-import { MediaCard } from "../../stories/organisms/mediaSnippet/mediaCard"
+import MediaCard from "./Cards/MediaCard"
+
 export const BlogPostRecommendations = () => {
   const [loading, setLoading] = useState(false)
   const [blogPreview, setBlogPreview] = useState([])
@@ -30,12 +31,11 @@ export const BlogPostRecommendations = () => {
           return (
             <Box p={2}>
               <MediaCard
-                image={
-                  "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=2048&q=20"
-                }
-                text={post.body}
-                title={post.title}
-                date={"12/07/1996"}
+                image="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=2048&q=20"
+                header={post.title}
+                content={post.body}
+                actionText="Read more"
+                link="/"
               />
             </Box>
           )

@@ -13,8 +13,6 @@ const getBlogData = async () => {
 exports.createPages = async ({ actions: { createPage } }) => {
   const blogPosts = await getBlogData()
 
-  console.log(blogPosts)
-
   // render overview of all blog posts
   createPage({
     path: `/blog`,
@@ -29,4 +27,43 @@ exports.createPages = async ({ actions: { createPage } }) => {
       context: { post },
     })
   })
+}
+
+exports.sourceNodes = async ({
+  actions,
+  createContentDigest,
+  createNodeId,
+  getNodesByType,
+}) => {
+  const { createNode } = actions
+
+  const blogPosts = await getBlogData()
+
+  blogPosts.forEach(post => {
+    createNode({
+      ...post,
+      id: createNodeId(`post-${post.id}`),
+      parent: null,
+      children: [],
+      internal: {
+        type: "blogPost",
+        content: JSON.stringify(post),
+        contentDigest: createContentDigest(post),
+      },
+    })
+  })
+
+  createNode({
+    blogPosts,
+    id: createNodeId("allBlogPosts"),
+    parent: null,
+    children: [],
+    internal: {
+      type: "allBlogPosts",
+      content: JSON.stringify(blogPosts),
+      contentDigest: createContentDigest(blogPosts),
+    },
+  })
+
+  return
 }

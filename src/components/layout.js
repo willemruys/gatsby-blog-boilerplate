@@ -9,8 +9,29 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
-import Header from "./header"
+import Header from "../components/Organisms/Header/Header"
 import "./layout.css"
+
+import { ThemeProvider } from "@material-ui/styles"
+import { useTheme } from "../hooks/Theme/useTheme"
+import { createMuiTheme } from "@material-ui/core"
+
+export const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: "#cfcfcf",
+      main: "#9e9e9e",
+      dark: "#707070",
+      contrastText: "#ffffff",
+    },
+    secondary: {
+      light: "#ffd95b",
+      main: "#ffa726",
+      dark: "#c77800",
+      contrastText: "#000000",
+    },
+  },
+})
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -24,9 +45,12 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
-      <div>{children}</div>
-    </>
+    <ThemeProvider theme={theme}>
+      <Header></Header>
+      <div style={{ backgroundColor: theme.palette.primary.light }}>
+        {children}
+      </div>
+    </ThemeProvider>
   )
 }
 

@@ -8,28 +8,16 @@ import { Link } from "gatsby"
 import { BlogPostRecommendations } from "../Organisms/BlogPostRecommendations"
 import { Grid } from "../Atoms/Grid/Grid"
 import { Hero } from "../../stories/organisms/Hero/hero"
-import Layout from "../layout"
+import Layout, { theme } from "../layout"
 import { Button } from "../../stories/atoms/button"
 import { textAlign } from "styled-system"
 import JumbotronComponent from "../Organisms/Jumbotron/Jumbotron"
 import { Container } from "react-bootstrap"
+import LatestProjects from "../Organisms/LatestProjects"
 
-export const HomePage: React.FC = () => {
-  const [loading, setLoading] = useState(false)
-  const [blogPreview, setBlogPreview] = useState([])
-
-  useEffect(() => {
-    // immediate invoked function expression
-    ;(async () => {
-      const res = await axios.get("https://jsonplaceholder.typicode.com/posts")
-      const length = res.data.length
-      setBlogPreview(res.data.slice(length - 3, length))
-    })()
-  }, [])
-
+export const HomePage = () => {
   return (
     <Layout>
-      <Header />
       <Hero
         title={"!404 dummies"}
         labelPrimary="View articles"
@@ -44,14 +32,19 @@ export const HomePage: React.FC = () => {
       </Container>
       <Section>
         <Box>
-          <h2>My latest posts</h2>
+          <h2 style={{ color: theme.palette.primary.contrastText }}>
+            My latest posts
+          </h2>
         </Box>
         <BlogPostRecommendations />
       </Section>
-      <Section>
-        <Box>
-          <h2>My most recent projects</h2>
+      <Section style={{ backgroundColor: theme.palette.primary.light }}>
+        <Box style={{ textAlign: "center" }}>
+          <h2 style={{ color: theme.palette.primary.contrastText }}>
+            My recent projects
+          </h2>
         </Box>
+        <LatestProjects />
       </Section>
     </Layout>
   )

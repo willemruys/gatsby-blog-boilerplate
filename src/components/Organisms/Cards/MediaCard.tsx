@@ -20,7 +20,7 @@ export interface MediaCardProps {
 
 const useStyle = makeStyles(() => ({
   titleContainer: {
-    minHeight: "130px",
+    minHeight: "160px",
   },
   contentContainer: {
     minHeight: "200px",
@@ -40,14 +40,16 @@ const MediaCard = ({
 }: MediaCardProps) => {
   const classes = useStyle()
   return (
-    <Card>
-      <CardHeader className={classes.titleContainer} title={header} />
+    <Card raised={true}>
+      <CardContent className={classes.titleContainer}>
+        <h4>{header}</h4>
+      </CardContent>
       <CardMedia className={classes.media} image={image} />
       <CardContent className={classes.contentContainer}>
         <p>{content}</p>
       </CardContent>
       <CardActions>
-        <Button variant="contained" href={link}>
+        <Button variant="contained" color="secondary" href={link}>
           {actionText}
         </Button>
         <p></p>

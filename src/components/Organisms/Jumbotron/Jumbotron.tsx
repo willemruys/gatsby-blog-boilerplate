@@ -12,7 +12,12 @@ export interface JumbotronComponentProps {
 
 export const JumbotronComponent = ({ heading, text, label }) => {
   return (
-    <Jumbotron style={{ backgroundColor: theme.palette.secondary.light }}>
+    <Jumbotron
+      style={{
+        backgroundColor: theme.palette.secondary.main,
+        color: theme.palette.secondary.contrastText,
+      }}
+    >
       <h2>{heading}</h2>
       <p>{text}</p>
       <p>

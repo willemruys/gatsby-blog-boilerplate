@@ -15,20 +15,21 @@ import "./layout.css"
 import { ThemeProvider } from "@material-ui/styles"
 import { useTheme } from "../hooks/Theme/useTheme"
 import { createMuiTheme } from "@material-ui/core"
+import Footer from "./Organisms/Footer/Footer"
 
 export const theme = createMuiTheme({
   palette: {
     primary: {
-      light: "#cfcfcf",
-      main: "#9e9e9e",
-      dark: "#707070",
-      contrastText: "#ffffff",
+      light: "#ffffff",
+      main: "#eeeeee",
+      dark: "#bcbcbc",
+      contrastText: "#000000",
     },
     secondary: {
-      light: "#ffd95b",
-      main: "#ffa726",
-      dark: "#c77800",
-      contrastText: "#000000",
+      light: "#63a4ff",
+      main: "#1976d2",
+      dark: "#004ba0",
+      contrastText: "#ffffff",
     },
   },
 })
@@ -50,6 +51,7 @@ const Layout = ({ children }) => {
       <div style={{ backgroundColor: theme.palette.primary.light }}>
         {children}
       </div>
+      <Footer />
     </ThemeProvider>
   )
 }

@@ -1,4 +1,6 @@
 const axios = require("axios")
+
+const { createFilePath } = require("gatsby-source-filesystem")
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
@@ -15,27 +17,8 @@ const getBlogData = async () => {
 const getProjectsData = async () => {
   const url = process.env.GATSBY_BLOG_API_URL + "/projects"
   const res = await axios.get(url)
-  console.log(res)
+
   return res.data
-}
-
-exports.createPages = async ({ actions: { createPage } }) => {
-  const blogPosts = await getBlogData()
-
-  // render overview of all blog posts
-  createPage({
-    path: `/blog`,
-    component: require.resolve("./src/components/Templates/BlogPosts.tsx"),
-    context: { blogPosts },
-  })
-
-  blogPosts.forEach(post => {
-    createPage({
-      path: `/blog/${post.id}`,
-      component: require.resolve("./src/components/Templates/BlogPost.tsx"),
-      context: { post },
-    })
-  })
 }
 
 exports.sourceNodes = async ({
@@ -53,6 +36,7 @@ exports.sourceNodes = async ({
       ...post,
       id: createNodeId(`post-${post.id}`),
       parent: null,
+
       children: [],
       internal: {
         type: "blogPost",
@@ -77,4 +61,28 @@ exports.sourceNodes = async ({
   })
 
   return
+}
+
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions
+  const result = await graphql(`
+    query allBlogPostData {
+      allBlogPost {
+        nodes {
+          body
+          id
+          userId
+          title
+        }
+      }
+    }
+  `)
+
+  result.data.allBlogPost.nodes.forEach(async post => {
+    createPage({
+      path: `/blog/${post.id}`,
+      component: require.resolve("./src/components/Templates/BlogPost.tsx"),
+      context: { post },
+    })
+  })
 }

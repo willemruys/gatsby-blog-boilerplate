@@ -1,4 +1,5 @@
 import React from "react"
+import ChipComponent from "../../Molecules/Chip/Chip"
 
 import {
   CardHeader,
@@ -8,10 +9,11 @@ import {
   CardActions,
   Button,
   makeStyles,
+  Typography,
 } from "@material-ui/core"
 
 export interface MediaCardProps {
-  image: string
+  image?: string
   header: string
   content: string
   actionText: string
@@ -20,7 +22,7 @@ export interface MediaCardProps {
 
 const useStyle = makeStyles(() => ({
   titleContainer: {
-    minHeight: "160px",
+    minHeight: "100px",
   },
   contentContainer: {
     minHeight: "200px",
@@ -42,17 +44,20 @@ const MediaCard = ({
   return (
     <Card raised={true}>
       <CardContent className={classes.titleContainer}>
-        <h4>{header}</h4>
+        <Typography variant="h6">{header}</Typography>
       </CardContent>
-      <CardMedia className={classes.media} image={image} />
+      <CardContent>
+        {" "}
+        <ChipComponent label="category" />
+      </CardContent>
+      {image && <CardMedia className={classes.media} image={image} />}
       <CardContent className={classes.contentContainer}>
-        <p>{content}</p>
+        <Typography variant="body1">{content}</Typography>
       </CardContent>
       <CardActions>
         <Button variant="contained" color="secondary" href={link}>
           {actionText}
         </Button>
-        <p></p>
       </CardActions>
     </Card>
   )

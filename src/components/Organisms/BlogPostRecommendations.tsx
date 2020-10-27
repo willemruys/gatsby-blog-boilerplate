@@ -4,6 +4,11 @@ import { Link, StaticQuery, graphql } from "gatsby"
 
 import axios from "axios"
 import MediaCard from "./Cards/MediaCard"
+import { Grid } from "@material-ui/core"
+
+export interface BlogPostRecommendationsProps {
+  showImage: boolean
+}
 
 export interface BlogPost {
   body: string
@@ -11,15 +16,10 @@ export interface BlogPost {
   title: string
 }
 
-export const BlogPostRecommendations = ({}) => {
+export const BlogPostRecommendations = ({ showImage }) => {
   return (
     <>
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-        }}
-      >
+      <Grid container xs={12} spacing={3}>
         <StaticQuery
           query={graphql`
             query threeBlogPosts {
@@ -34,19 +34,27 @@ export const BlogPostRecommendations = ({}) => {
           `}
           render={data =>
             data.allBlogPost.nodes.map((post: BlogPost) => (
-              <Box p={2}>
+              <Grid item xs={12} sm={6} md={4}>
+                {showImage && (
+                  <MediaCard
+                    image="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=2048&q=20"
+                    header={post.title}
+                    content={post.body}
+                    actionText="Read more"
+                    link="/"
+                  />
+                )}
                 <MediaCard
-                  image="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=2048&q=20"
                   header={post.title}
                   content={post.body}
                   actionText="Read more"
                   link="/"
                 />
-              </Box>
+              </Grid>
             ))
           }
         />
-      </Box>
+      </Grid>
     </>
   )
 }

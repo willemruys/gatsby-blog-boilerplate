@@ -1,5 +1,5 @@
 import React from "react"
-import { Button, Paper } from "@material-ui/core"
+import { Button, Chip, Paper, Typography } from "@material-ui/core"
 import {
   Grid,
   Card,
@@ -8,14 +8,18 @@ import {
   makeStyles,
   CardActions,
 } from "@material-ui/core"
+import ChipComponent from "../../Molecules/Chip/Chip"
 
-const useStyle = makeStyles(() => ({
+const useStyle = makeStyles(theme => ({
   image: {
     height: 0,
     paddingTop: "56%",
   },
   actionArea: {
     padding: "10px",
+  },
+  chip: {
+    backgroundColor: theme.palette.primary.main,
   },
 }))
 export const ProjectsCard = ({ project }) => {
@@ -27,8 +31,13 @@ export const ProjectsCard = ({ project }) => {
           <Grid direction="column" container xs={12} md={8}>
             <Grid item xs>
               <CardContent>
-                <h4>{project.projectName}</h4>
-                <p>{project.projectSnippet}</p>
+                <Typography variant="h6">{project.projectName}</Typography>
+                <ChipComponent label={project.category} sizeChip="small" />
+              </CardContent>
+              <CardContent>
+                <Typography variant="body1">
+                  {project.projectSnippet}
+                </Typography>
               </CardContent>
             </Grid>
             <Grid item justify="flex-end">

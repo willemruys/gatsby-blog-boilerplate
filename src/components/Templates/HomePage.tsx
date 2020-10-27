@@ -6,7 +6,7 @@ import { Header } from "../../stories/organisms/header/Header"
 import { Section } from "react-landing-page"
 import { Link } from "gatsby"
 import { BlogPostRecommendations } from "../Organisms/BlogPostRecommendations"
-import { Grid } from "../Atoms/Grid/Grid"
+
 import { Hero } from "../../stories/organisms/Hero/hero"
 import Layout, { theme } from "../layout"
 import { Button } from "../../stories/atoms/button"
@@ -36,7 +36,7 @@ export const HomePage = () => {
             My latest posts
           </h2>
         </Box>
-        <BlogPostRecommendations />
+        <BlogPostRecommendations showImage={true} />
       </Section>
       <Section style={{ backgroundColor: theme.palette.primary.light }}>
         <Box style={{ textAlign: "center" }}>

@@ -6,6 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "@pattern-lab/edition-node": "^5.13.1",
     "@rebass/forms": "^4.0.6",
     "@rebass/grid": "^6.1.0",
@@ -21,6 +22,7 @@
     "gatsby-plugin-react-helmet": "^3.3.12",
     "gatsby-plugin-sharp": "^2.6.38",
     "gatsby-source-filesystem": "^2.3.32",
+    "gatsby-transformer-remark": "^2.8.46",
     "gatsby-transformer-sharp": "^2.5.16",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
@@ -38,9 +40,14 @@
     "@storybook/addon-essentials": "^6.0.26",
     "@storybook/addon-links": "^6.0.26",
     "@storybook/react": "^6.0.26",
+    "babel-jest": "^26.6.0",
     "babel-loader": "^8.1.0",
+    "babel-preset-gatsby": "^0.5.14",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.6.0",
     "prettier": "2.1.2",
-    "react-is": "^16.13.1"
+    "react-is": "^16.13.1",
+    "react-test-renderer": "^16.14.0"
   },
   "keywords": [
     "gatsby"
@@ -53,7 +60,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },

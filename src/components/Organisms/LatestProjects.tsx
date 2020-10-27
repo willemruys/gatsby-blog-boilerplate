@@ -15,6 +15,7 @@ const LatestProjects = () => {
                 id
                 projectName
                 projectSnippet
+                category
               }
             }
           }
